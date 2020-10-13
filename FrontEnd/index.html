@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Mi web de empleados</title>
 
     <!-- BOOTSTRAP IMPORTS  -->
 
@@ -27,19 +27,34 @@
 </head>
 
 <body>
-    <h1>Get Started</h1>
-    <h2>First ASP.NET Web Page</h2>
+    <h1>Employee Dashboard</h1>
+    <label for="fname">Name</label>
+    <input type="text" id="fname" name="fname"><br><br>
+    <label for="fsurname">Surname</label>
+    <input type="text" id="fsurname" name="fsurname"><br><br>
+    <label for="fsalary">Salary</label>
+    <input type="number" id="fsalary" name="fsalary"><br><br>
+    <label for="fjob">Job</label>
+    <input type="text" id="fjob" name="fjob"><br><br>
 
-    <div class="baseMargin">
+    <button onclick="addEmployee()">Add employee</button>
+    <button onclick="getAllEmployee()">Get All employees</button>
+    <button id='deleteRecord' data-model-id="@model.Id">delete</button>
+    
+
+    <button id="appender">Append text</button>
+
+
+    <h3>Employee List</h3>
+    <p id="employeeList"> </p>
+    <!--<div class="baseMargin">
         <button type="button" class="btn btn-primary" onclick="getButton()">Show All(GET)</button>
         <button type="button" class="btn btn-secondary">Edit</button>
         <button type="button" class="btn btn-success">Add New Employee(POST)</button>
         <button type="button" class="btn btn-danger">Delete</button>
-    </div>
+    </div>-->
 
 
-
-    <button>Get External Content</button>
 
     <!-- JAVASCRIPT BOOTSTRAP IMPORTS -->
     <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
