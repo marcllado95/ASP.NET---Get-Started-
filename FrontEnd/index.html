@@ -39,14 +39,27 @@
 
     <button onclick="addEmployee()">Add employee</button>
     <button onclick="getAllEmployee()">Get All employees</button>
-    <button id='deleteRecord' data-model-id="@model.Id">delete</button>
-    
-
-    <button id="appender">Append text</button>
-
-
+  
     <h3>Employee List</h3>
-    <p id="employeeList"> </p>
+    <div>
+
+        <table id="employeeList">
+
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Job</th>
+                <th>Salary</th>
+              </tr>
+
+        </table>
+    
+    
+    
+    
+    </div>
+
+
     <!--<div class="baseMargin">
         <button type="button" class="btn btn-primary" onclick="getButton()">Show All(GET)</button>
         <button type="button" class="btn btn-secondary">Edit</button>
