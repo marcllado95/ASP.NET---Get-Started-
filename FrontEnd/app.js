@@ -30,9 +30,7 @@ function addEmployee() {
 
 function getAllEmployee() {
 
-    $('#employeeList tbody').empty();
-
-    
+    $('#employeeList tbody').empty();  //limpiamos la lista (solo el cuerpo asi mantenemos headers) para que no se duplique cuando volvamos a pulsar 
 
     $.ajax({
         type: "GET",
@@ -40,63 +38,18 @@ function getAllEmployee() {
         dataType: "json",
         success: function (response) {
 
-
-
-           
             if (response.length > 0) {
-
-           //     $("#employeeList").remove();        //Limpiar la lista
 
                 response.forEach(function (item) {
 
                     $('#employeeList').append($('<tbody>')
-                        .append($('<td>').append(item.name))
+                        .append($('<td>').append(item.employeeId))
+                        .append($('<td>').append(item.name))     //FICAR PROPIETATS EN MINÚSCULES!!!!
                         .append($('<td>').append(item.surname))
                         .append($('<td>').append(item.job))
-                        .append($('<td>').append(item.salary + ' €'))
-                        
-                        ) 
-                        
-                });
-
-
-                    //  alert(item.name);                       //FICAR PROPIETATS EN MINÚSCULES!!!!
-  
-                //    var nom = '<p>'+ item.name + '</p></br>'
-                //    var cognom = '<p>'+ item.surname + '</p></br>'
-                //    var ofici = '<p>'+ item.job + '</p></br>'
-                //    var sou = '<p>'+ item.salary + '</p></br>'
-     
-                //    var nom = item.name + '</br>';
-                //    var cognom = item.surname + '</br>';
-                //    var ofici = '<p>'+ item.job + '</p></br>'
-                //    var sou = '<p>'+ item.salary + '</p></br>'
-  
-                  //var prueba = item.salary;
-
-                    // worker =   item.name,
-                    //             item.surname,
-                    //             item.job,
-                    //             item.salary;
-                            
-                    // $("#employeeList").append(x);
-                    
-
-  
-               
-              //      listtest.append(prueba);
-                    //   $("#employeeList").append(nom);
-                    //   $("#employeeList").append(cognom);
-                    //   $("#employeeList").append(ofici);
-                    //   $("#employeeList").append(sou);
-  
-                    //   var pTest = document.getElementById("employeeList");
-  
-                    //   pTest.outerHTML;
-  
-                  
-                  
-  
+                        .append($('<td>').append(item.salary + ' €'))          
+                        )    
+                });  
 
             } else {
                 pTest.outerText = "No tienes ningún empleado por el momento";
@@ -111,21 +64,50 @@ function getAllEmployee() {
 
 }
 
-function deleteRecord() {
+function FireEmployee() {
 
-    var EmployeeId = $(this).data("model-id");
+    var fireEmploId = parseInt(document.getElementById("fireid").value);
 
     $.ajax({
         type: "DELETE",
-        url: baseURL + "api/Employees",
+        url: baseURI + "api/Employees/" + fireEmploId,
+        contentType: 'application/json',
         success: function (response) {
 
             alert("delete ok");
         },
         error: function (error) {
-            alert("hay un problema en delete")
+            alert("hay un problema en delete");
+            console.log(error);
         },
         dataType: "json"
     });
 }
 
+function editEmployee() {
+
+    var edid = parseInt(document.getElementById("fid").value); 
+    var edname = document.getElementById("fname").value;
+    var edsurname = document.getElementById("fsurname").value;
+    var edsalary = parseInt(document.getElementById("fsalary").value);  // parseInt para convertir string a int
+    var edjob = document.getElementById("fjob").value;
+
+    var edEmployee = { employeeId: edid, Name: edname, Surname: edsurname, Salary: edsalary, Job: edjob };
+//fiquem employeeId perque no generi una nova id y por ende un nou employee --> donaria error 405
+      $("ol").append("<li>Appended item</li>");
+
+    $.ajax({
+        type: "PUT",
+        url: baseURI + "api/Employees/" + edid,
+        data: JSON.stringify(edEmployee),
+        contentType: 'application/json',
+        success: function (response) {
+            alert("edit ok");
+        },
+        error: function (error) {
+            console.log(error);        //console.log(error) especifica el error en la consola 
+            alert("edit problem")
+        },
+        dataType: "json"
+    });
+}

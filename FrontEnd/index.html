@@ -28,6 +28,8 @@
 
 <body>
     <h1>Employee Dashboard</h1>
+    <label for="fid">just for editing --> id</label>
+    <input type="number" id="fid" name="fid"><br><br>
     <label for="fname">Name</label>
     <input type="text" id="fname" name="fname"><br><br>
     <label for="fsurname">Surname</label>
@@ -38,27 +40,39 @@
     <input type="text" id="fjob" name="fjob"><br><br>
 
     <button onclick="addEmployee()">Add employee</button>
+    <button onclick="editEmployee()">Edit</button>
     <button onclick="getAllEmployee()">Get All employees</button>
+
   
     <h3>Employee List</h3>
     <div>
 
         <table id="employeeList">
 
-            <tr>
+        <thead>
+            <tr>                <!--  tr = row (fila) -->
+                <th>id</th>
                 <th>Name</th>
                 <th>Surname</th>
                 <th>Job</th>
                 <th>Salary</th>
-              </tr>
-
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+<!-- dejo esto vacio porque aqui se hace el .append (tbody) en el .js-->
+            </tr>
+        </tbody>
         </table>
-    
-    
-    
-    
     </div>
 
+
+    <br><br>
+    
+    <h4>Fire Employee... Ciao!</h4>
+    <label for="fireid">id:</label>
+    <input type="number" id="fireid" name="fireid">
+    <button onclick="FireEmployee()">Delete</button>
 
     <!--<div class="baseMargin">
         <button type="button" class="btn btn-primary" onclick="getButton()">Show All(GET)</button>
